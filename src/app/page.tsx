@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface Site {
   id: string;
@@ -276,51 +277,5 @@ export default function Dashboard() {
         </button>
       </Link>
     </div>
-  );
-}
-
-      </div>
-      <Table>
-        <TableCaption>List of all managed WordPress sites</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>URL</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {isLoading ? (
-            <TableRow>
-              <TableCell colSpan={2} className="text-center text-muted-foreground">
-                Loading sites...
-              </TableCell>
-            </TableRow>
-          ) : error ? (
-            <TableRow>
-              <TableCell colSpan={2} className="text-center text-red-600">
-                Error: {error}
-              </TableCell>
-            </TableRow>
-          ) : sites.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={2} className="text-center text-muted-foreground">
-                No sites configured.
-              </TableCell>
-            </TableRow>
-          ) : (
-            sites.map((site) => (
-              <TableRow key={site.id}>
-                <TableCell>{site.name}</TableCell>
-                <TableCell>
-                  <a href={site.url} className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
-                    {site.url}
-                  </a>
-                </TableCell>
-              </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
-    </main>
   );
 }
